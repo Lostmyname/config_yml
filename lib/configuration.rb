@@ -13,12 +13,12 @@ module Configuration
   #   #   username: "root"
   #
   #   ENV["RACK_ENV"] # => "development"
-  #   Configuration.database # => { :host => "localhost", :username => "tmp/mysql.sock" }
+  #   Configuration.database # => { :host => "localhost", :username => "root" }
   #
   class << self
     def method_missing(method, *args)
       if file = files.select { |f| f =~ /#{method.to_s}/ }[0]
-        hash[method.to_s] ||= load_yml(file)
+        hash[method] ||= load_yml(file)
       end
     end
 
@@ -33,9 +33,17 @@ module Configuration
     private
 
     def load_yml(file)
-      config = YAML.load_file(file)
+      config = with_symbol_keys YAML.load_file(file)
       config.is_a?(Hash) && config.has_key?(ENV["RACK_ENV"].to_sym) ?
         config[ENV["RACK_ENV"].to_sym] : config
+    end
+
+    def with_symbol_keys(hash_config)
+      return hash_config unless hash_config.is_a?(Hash)
+
+      hash_config.inject({}) do |symbolized, (key, value)|
+        symbolized.merge({ key.to_sym => with_symbol_keys(value) })
+      end
     end
   end
 end
