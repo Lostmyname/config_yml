@@ -19,6 +19,43 @@ describe Configuration do
     end
   end
 
+  describe ".env" do
+    let(:file_a) { double }
+    let(:file_b) { double }
+    let(:rack_env) { "rack_test" }
+    let(:rails_env) { "rails_test" }
+
+    before { Configuration.instance_variable_set(:@env, nil) }
+
+    context "when Rack application" do
+      before { ENV["RACK_ENV"] = rack_env }
+      after { ENV["RACK_ENV"] = nil }
+
+      it "returns the environment as symbol" do
+        Configuration.env.should be_eql rack_env.to_sym
+      end
+    end
+
+    context "when is a Rails application" do
+      before do
+        module Rails ; end
+        Rails.stub(:env).and_return(rails_env)
+      end
+
+      after { Object.send(:remove_const, :Rails) }
+
+      it "returns the environment as symbol" do
+        Configuration.env.should be_eql rails_env.to_sym
+      end
+    end
+
+    context "when environment isn't defined" do
+      it "returns nil" do
+        Configuration.env.should be_nil
+      end
+    end
+  end
+
   describe "acessing a key from configuration files" do
     context "when a file has a flat hash" do
       let(:file_a) { { key_a: "value_a" } }
@@ -45,6 +82,9 @@ describe Configuration do
         { test: { key: "value_test" },
           development: { key: "value_dev" } }
       end
+
+      before { ENV["RACK_ENV"] = "test" }
+      after { ENV["RACK_ENV"] = nil }
 
       it "returns hash of environment key" do
         Configuration.file_a[:key].should be_eql "value_test"

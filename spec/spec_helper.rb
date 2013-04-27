@@ -1,5 +1,3 @@
-ENV["RACK_ENV"] = "test"
-
 require "configuration"
 
 RSpec.configure do |config|

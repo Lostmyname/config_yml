@@ -30,12 +30,16 @@ module Configuration
       @hash ||= {}
     end
 
+    def env
+      @env ||= (ENV["RACK_ENV"] || Rails.env).to_sym rescue nil
+    end
+
     private
 
     def load_yml(file)
       config = with_symbol_keys YAML.load_file(file)
-      config.is_a?(Hash) && config.has_key?(ENV["RACK_ENV"].to_sym) ?
-        config[ENV["RACK_ENV"].to_sym] : config
+      config.is_a?(Hash) && config.has_key?(env) ?
+        config[env] : config
     end
 
     def with_symbol_keys(hash_config)
