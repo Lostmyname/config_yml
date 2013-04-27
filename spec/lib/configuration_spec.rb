@@ -4,8 +4,7 @@ describe Configuration do
   let(:files) { ["config/file_a.yml", "config/file_b.yml"] }
 
   before do
-    Configuration.hash  = nil
-    Configuration.files = nil
+    Configuration.instance_variable_set(:@hash, nil)
     Dir.stub(:glob).and_return(files)
     YAML.stub(:load_file).and_return(file_a, file_b)
   end

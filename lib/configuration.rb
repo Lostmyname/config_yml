@@ -1,3 +1,5 @@
+require "yaml"
+
 module Configuration
   # Returns a hash with configuration for the given class method
   # called. The configuration is loaded from the file config/+method_called+.yml.
@@ -14,15 +16,18 @@ module Configuration
   #   Configuration.database # => { :host => "localhost", :username => "tmp/mysql.sock" }
   #
   class << self
-    attr_accessor :hash, :files
-
     def method_missing(method, *args)
-      @hash  ||= {}
-      @files ||= Dir.glob("config/*.yml")
-
-      if file = @files.select { |f| f =~ /#{method.to_s}/ }[0]
-        @hash[method.to_s] ||= load_yml(file)
+      if file = files.select { |f| f =~ /#{method.to_s}/ }[0]
+        hash[method.to_s] ||= load_yml(file)
       end
+    end
+
+    def files
+      @files ||= Dir.glob("config/*.yml")
+    end
+
+    def hash
+      @hash ||= {}
     end
 
     private
