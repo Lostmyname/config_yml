@@ -8,6 +8,29 @@ Description
 
 config.yml provides a very simple way of configure your ruby applications through yaml files.
 
+Installation
+------------
+
+If you are using Bundler, add the following code to your Gemfile:
+```ruby
+gem "config_yml", :require => "configuration"
+```
+
+and run:
+```console
+$ bundle install
+```
+
+If you are not using Bundler:
+```console
+$ gem install config_yml
+```
+
+then in your Ruby code:
+```ruby
+require "configuration"
+```
+
 Examples
 --------
 
