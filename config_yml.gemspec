@@ -1,5 +1,4 @@
-$:.unshift(File.expand_path("../lib", __FILE__))
-require "configuration/version"
+require File.expand_path("../lib/configuration/version", __FILE__)
 
 Gem::Specification.new do |spec|
   spec.name        = "config_yml"
