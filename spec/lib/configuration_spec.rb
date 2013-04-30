@@ -14,7 +14,6 @@ describe Configuration do
     let(:file_b) { double }
 
     it "loads all config files" do
-      Configuration.file_a
       Configuration.files.should be_eql files
     end
   end
