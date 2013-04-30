@@ -1,4 +1,5 @@
 require "yaml"
+require "configuration/version"
 
 module Configuration
   # Returns a hash with configuration for the given class method
