@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.email       = "to@vitork.com"
   spec.homepage    = "https://github.com/vitork/config_yml"
 
-  spec.files       = `git ls-files`.split("\n")
-  spec.test_files  = `git ls-files -- spec/*`.split("\n")
+  spec.files         = `git ls-files`.split("\n")
+  spec.test_files    = `git ls-files -- spec/*`.split("\n")
+  spec.require_paths = ['lib']
 end
