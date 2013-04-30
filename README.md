@@ -51,6 +51,10 @@ end
 ENV["REDIS_URL"] # => "redis://:foo@localhost:6379/bar"
 ```
 
+You can also use the shorthand:
+```ruby
+redis = Conf.redis
+```
 
 #### Environment based:
 

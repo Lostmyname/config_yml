@@ -1,4 +1,6 @@
 require "yaml"
+
+require "configuration/syntax"
 require "configuration/version"
 
 module Configuration
