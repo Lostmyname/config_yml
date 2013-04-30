@@ -1,3 +1,8 @@
+PATH
+  remote: .
+  specs:
+    config_yml (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -15,4 +20,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  config_yml!
   rspec
