@@ -89,7 +89,7 @@ Configuration.mysql[:database] # => "myapp_test"
 #### Nested:
 
 ```yaml
-# config/russian_doll.yml
+# config/matryoshka.yml
 foo:
   bar:
     baz:
@@ -100,7 +100,7 @@ foo:
 ```
 
 ```ruby
-Configuration.russian_doll[:foo][:bar][:baz] # => { :array => [:red, :green, :blue] }
+Configuration.matryoshka[:foo][:bar][:baz] # => { :array => [:red, :green, :blue] }
 ```
 
 License
