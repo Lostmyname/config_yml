@@ -12,21 +12,25 @@ Installation
 ------------
 
 If you are using Bundler, add the following code to your Gemfile:
+
 ```ruby
 gem "config_yml", :require => "configuration"
 ```
 
 and run:
+
 ```console
 $ bundle install
 ```
 
 If you are not using Bundler:
+
 ```console
 $ gem install config_yml
 ```
 
 then in your Ruby code:
+
 ```ruby
 require "configuration"
 ```
@@ -52,6 +56,7 @@ ENV["REDIS_URL"] # => "redis://:foo@localhost:6379/bar"
 ```
 
 You can also use the shorthand:
+
 ```ruby
 redis = Conf.redis
 ```
@@ -78,12 +83,14 @@ test:
 ```
 
 Rack
+
 ```ruby
 ENV["RACK_ENV"] # => "development"
 Configuration.mysql[:database] # => "myapp_development"
 ```
 
 Rails
+
 ```ruby
 Rails.env # => "test"
 Configuration.mysql[:database] # => "myapp_test"
