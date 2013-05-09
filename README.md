@@ -43,7 +43,7 @@ Examples
 password: foo
 host: localhost
 port: 6379
-database: bar
+database: 1
 ```
 
 ```ruby
@@ -52,7 +52,7 @@ if redis = Configuration.redis
   ENV["REDIS_URL"] = %(redis://#{password}#{redis[:host]}:#{redis[:port]}/#{redis[:database]})
 end
 
-ENV["REDIS_URL"] # => "redis://:foo@localhost:6379/bar"
+ENV["REDIS_URL"] # => "redis://:foo@localhost:6379/1"
 ```
 
 You can also use the shorthand:
