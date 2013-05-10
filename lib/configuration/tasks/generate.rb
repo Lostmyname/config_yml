@@ -1,5 +1,25 @@
 module Configuration
   module Tasks
+    # Provides a method to generate yaml files from sample or example files.
+    # This module and methods are intended to use with a rake task and are not
+    # available for the rest of application.
+    #
+    # Examples:
+    #
+    #   # The following files
+    #   config/application.yml.sample
+    #   config/database.yml.sample
+    #   config/resque.yml.example
+    #
+    #   # will generate:
+    #   config/application.yml
+    #   config/database.yml
+    #   config/resque.yml
+    #
+    # If the .yml file already exists and has the same content of the related
+    # .sample file, the .yml will remain untouched. Otherwise, the content will
+    # be replaced.
+    #
     module Generate
       class << self
         def generate_ymls
