@@ -1,5 +1,5 @@
 require "configuration"
-require "configuration/tasks"
+require "configuration/tasks/generate"
 
 RSpec.configure do |config|
   config.color_enabled = true
