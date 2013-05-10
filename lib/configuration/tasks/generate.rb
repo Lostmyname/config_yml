@@ -17,8 +17,8 @@ module Configuration
     #   config/resque.yml
     #
     # If the .yml file already exists and has the same content of the related
-    # .sample file, the .yml will remain untouched. Otherwise, the content will
-    # be replaced.
+    # .sample file, the .yml will remain untouched. Otherwise, user will be
+    # asked whether the content will be replaced or not.
     #
     module Generate
       class << self
@@ -60,8 +60,10 @@ module Configuration
 
         def replace(sample, destination)
           if read_content(sample) != read_content(destination)
-            FileUtils.cp(sample, destination)
-            puts "#{destination} content have been replaced by #{sample} content"
+            ask "Do you want to replace existing #{destination}?" do
+              FileUtils.cp(sample, destination)
+              puts "#{destination} content have been replaced by #{sample} content"
+            end
           end
         end
 
@@ -71,6 +73,11 @@ module Configuration
 
         def handle_error(group)
           puts "An error ocurred when trying to copy config/#{group}.* files."
+        end
+
+        def ask(message, &block)
+          print "#{message} (yes/no): "
+          yield if %w{y yes}.include? STDIN.gets.strip
         end
       end
     end

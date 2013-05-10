@@ -37,6 +37,7 @@ describe Configuration::Tasks::Generate do
         before do
           subject.should_receive(:read_content).with(sample_file).and_return("bar")
           subject.should_receive(:read_content).with(destination_file).and_return("baz")
+          subject.should_receive(:ask).and_yield
         end
 
         it "replaces yaml file with sample" do
