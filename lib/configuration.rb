@@ -1,6 +1,7 @@
 require "yaml"
 
 require "configuration/syntax"
+require "configuration/railtie" if defined?(Rails)
 require "configuration/version"
 
 module Configuration
