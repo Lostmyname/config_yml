@@ -1,4 +1,4 @@
-config.yml
+config_yml
 ==========
 
 Simplify your app configuration.
@@ -6,7 +6,7 @@ Simplify your app configuration.
 Description
 -----------
 
-config.yml provides a very simple way of configure your ruby applications through yaml files.
+config_yml provides a very simple way of configure your ruby applications through yaml files.
 
 Installation
 ------------
@@ -35,8 +35,8 @@ then in your Ruby code:
 require "configuration"
 ```
 
-Examples
---------
+Usage
+-----
 
 ```yaml
 # config/redis.yml
@@ -112,6 +112,23 @@ foo:
 
 ```ruby
 Configuration.matryoshka[:foo][:bar][:baz] # => { :array => [:red, :green, :blue] }
+```
+
+Manage yaml files
+-----------------
+
+Avoid maintain .yml files in your repository since they very ofter cointain sensitive information. You can use .yml.sample or .yml.example file instead with fake data.
+
+To transform sample files in yaml files, you can use the following task:
+
+```console
+$ rake config_yml:generate
+```
+
+If you are not using Rails, first add this to your Rakefile:
+
+```ruby
+require "configuration/tasks"
 ```
 
 License
