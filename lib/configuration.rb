@@ -21,7 +21,7 @@ module Configuration
   #
   class << self
     def method_missing(method, *args)
-      if file = files.select { |f| f =~ /#{method.to_s}/ }[0]
+      if file = files.select { |f| f == "config/#{method.to_s}.yml" }[0]
         hash[method] ||= load_yml(file)
       end
     end
