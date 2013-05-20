@@ -3,6 +3,7 @@ require "spec_helper"
 describe Configuration::Tasks::Generate do
   before do
     Dir.stub(:glob).and_return(files)
+    FileUtils.stub(:cp)
     subject.instance_variable_set(:@grouped_files, nil)
   end
 
