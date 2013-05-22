@@ -57,8 +57,8 @@ describe Configuration do
 
   describe "acessing a key from configuration files" do
     context "when a file has a flat hash" do
-      let(:file_a) { { key_a: "value_a" } }
-      let(:file_b) { { key_b: "value_b" } }
+      let(:file_a) { { :key_a => "value_a" } }
+      let(:file_b) { { :key_b => "value_b" } }
 
       it "responds to keys split in different files" do
         subject.file_a[:key_a].should be_eql "value_a"
@@ -67,7 +67,7 @@ describe Configuration do
     end
 
     context "when a file has a nested hash" do
-      let(:file_a) { { nested: { key: "value" } } }
+      let(:file_a) { { :nested => { :key => "value" } } }
       let(:file_b) { double }
 
       it "responds to nested key values" do
@@ -78,8 +78,8 @@ describe Configuration do
     context "when a file first level keys is environment names" do
       let(:file_b) { double }
       let(:file_a) do
-        { test: { key: "value_test" },
-          development: { key: "value_dev" } }
+        { :test => { :key => "value_test" },
+          :development => { :key => "value_dev" } }
       end
 
       before { ENV["RACK_ENV"] = "test" }

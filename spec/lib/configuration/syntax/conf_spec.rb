@@ -2,8 +2,8 @@ require "spec_helper"
 
 describe Configuration::Syntax::Conf do
   let(:files) { ["config/file_a.yml", "config/file_b.yml"] }
-  let(:file_a) { { key_a: "value_a" } }
-  let(:file_b) { { key_b: "value_b" } }
+  let(:file_a) { { :key_a => "value_a" } }
+  let(:file_b) { { :key_b => "value_b" } }
 
   before do
     Dir.stub(:glob).and_return(files)
