@@ -1,10 +1,11 @@
 config_yml
 ==========
 
-Simplify your app configuration.
-
 [![Build Status](https://travis-ci.org/vitork/config_yml.png?branch=master)](https://travis-ci.org/vitork/config_yml)
 [![Code Climate](https://codeclimate.com/github/vitork/config_yml.png)](https://codeclimate.com/github/vitork/config_yml)
+
+
+Simplify your app configuration.
 
 Description
 -----------
@@ -41,6 +42,8 @@ require "configuration"
 Usage
 -----
 
+Create any yml file inside config/ and it will became a hash.
+
 ```yaml
 # config/redis.yml
 password: foo
@@ -61,8 +64,17 @@ ENV["REDIS_URL"] # => "redis://:foo@localhost:6379/1"
 You can also use the shorthand:
 
 ```ruby
-redis = Conf.redis
+redis = Conf.redis # => { :password => "foo", :host => "localhost", :port => 6379, :database => 1 }
 ```
+
+To see all available yml files and configurations:
+
+```ruby
+Configuration.files # => ["config/redis.yml"]
+Configuration.hash # => { :redis => { :password => "foo", :host => "localhost", :port => 6379, :database => 1 } }
+```
+
+Obs.: File names must match Ruby method name restrictions. E.g. don't use config/my-app.yml, use config/my_app.yml instead.
 
 #### Environment based:
 
