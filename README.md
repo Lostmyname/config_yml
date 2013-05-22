@@ -3,6 +3,7 @@ config_yml
 
 Simplify your app configuration.
 
+[![Build Status](https://travis-ci.org/vitork/config_yml.png?branch=master)](https://travis-ci.org/vitork/config_yml)
 [![Code Climate](https://codeclimate.com/github/vitork/config_yml.png)](https://codeclimate.com/github/vitork/config_yml)
 
 Description
