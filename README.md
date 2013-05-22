@@ -3,6 +3,8 @@ config_yml
 
 Simplify your app configuration.
 
+[![Code Climate](https://codeclimate.com/github/vitork/config_yml.png)](https://codeclimate.com/github/vitork/config_yml)
+
 Description
 -----------
 
