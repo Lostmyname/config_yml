@@ -1,4 +1,7 @@
 source "https://rubygems.org"
 gemspec
 
-gem "rspec"
+group :test do
+  gem "rake"
+  gem "rspec"
+end
