@@ -42,7 +42,8 @@ require "configuration"
 Usage
 -----
 
-Create any yml file inside config/ and it will became a hash.
+Create any yaml file inside config/ directory and it will became a hash accessible
+through the class method with the same name of the file.
 
 ```yaml
 # config/redis.yml
@@ -67,14 +68,15 @@ You can also use the shorthand:
 redis = Conf.redis # => { :password => "foo", :host => "localhost", :port => 6379, :database => 1 }
 ```
 
-To see all available yml files and configurations:
+To see all available yaml files and configurations:
 
 ```ruby
 Configuration.files # => ["config/redis.yml"]
 Configuration.hash # => { :redis => { :password => "foo", :host => "localhost", :port => 6379, :database => 1 } }
 ```
 
-Obs.: File names must match Ruby method name restrictions. E.g. don't use config/my-app.yml, use config/my_app.yml instead.
+Obs.: File names must match Ruby method name restrictions.
+E.g. don't use config/my-app.yml, use config/my_app.yml instead.
 
 #### Environment based:
 
@@ -126,13 +128,15 @@ foo:
 ```
 
 ```ruby
-Configuration.matryoshka[:foo][:bar][:baz] # => { :array => [:red, :green, :blue] }
+Configuration.matryoshka[:foo][:bar][:baz][:array] # => [:red, :green, :blue]
 ```
 
 Manage yaml files
 -----------------
 
-Avoid maintain .yml files in your repository since they very ofter cointain sensitive information. You can use .yml.sample or .yml.example file instead with fake data.
+Avoid maintain .yml files in your repository since they very ofter cointain
+sensitive information. You can use .yml.sample or .yml.example files with fake
+data instead.
 
 To transform sample files in yaml files, you can use the following task:
 
