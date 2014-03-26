@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    config_yml (0.0.5)
+    config_yml (0.0.6)
 
 GEM
   remote: https://rubygems.org/
