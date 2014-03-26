@@ -50,7 +50,7 @@ module Configuration
       return hash_config unless hash_config.is_a?(Hash)
 
       hash_config.inject({}) do |symbolized, (key, value)|
-        symbolized.merge({ key.to_sym => with_symbol_keys(value) })
+        symbolized.merge({ key.to_sym => with_symbol_keys(value), key => value })
       end
     end
   end
