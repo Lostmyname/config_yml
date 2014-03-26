@@ -68,11 +68,10 @@ You can also use the shorthand:
 redis = Conf.redis # => { :password => "foo", :host => "localhost", :port => 6379, :database => 1 }
 ```
 
-To see all available yaml files and configurations:
+To see all available yaml files:
 
 ```ruby
 Configuration.files # => ["config/redis.yml"]
-Configuration.hash # => { :redis => { :password => "foo", :host => "localhost", :port => 6379, :database => 1 } }
 ```
 
 Obs.: File names must match Ruby method name restrictions.
