@@ -30,15 +30,15 @@ module Configuration
       @files ||= Dir.glob("config/*.yml")
     end
 
-    def hash
-      @hash ||= {}
-    end
-
     def env
       @env ||= (ENV["RACK_ENV"] || Rails.env).to_sym rescue nil
     end
 
     private
+
+    def hash
+      @hash ||= {}
+    end
 
     def load_yml(file)
       config = with_symbol_keys YAML.load_file(file)
