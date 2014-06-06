@@ -103,6 +103,28 @@ describe Configuration do
       end
     end
 
+    context "when the configuration root is specified" do
+      let(:file_a) do
+        { "key" => "value_test" }
+      end
+      let(:file_b) { double }
+      let(:files) { ["foo/bar/config/file_a.yml", "foo/bar/config/file_b.yml"] }
+
+      before do
+        subject.instance_variable_set(:@files, nil)
+        Configuration.root = "foo/bar"
+      end
+      after { Configuration.root = nil }
+
+      it "has a root set" do
+        Configuration.root.should be_eql "foo/bar"
+      end
+
+      it "returns value" do
+        subject.file_a[:key].should be_eql "value_test"
+      end
+    end
+
     context "when configuration file doesn't exist" do
       let(:file_a) { double }
       let(:file_b) { double }

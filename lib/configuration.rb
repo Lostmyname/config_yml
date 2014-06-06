@@ -20,14 +20,16 @@ module Configuration
   #   Configuration.database # => { :host => "localhost", :username => "root" }
   #
   class << self
+    attr_accessor :root
+
     def method_missing(method, *args)
-      if file = files.select { |f| f == "config/#{method.to_s}.yml" }[0]
+      if file = files.select { |f| f == files_path(method.to_s) }[0]
         hash[method] ||= load_yml(file)
       end
     end
 
     def files
-      @files ||= Dir.glob("config/*.yml")
+      @files ||= Dir.glob(files_path)
     end
 
     def env
@@ -35,6 +37,10 @@ module Configuration
     end
 
     private
+
+    def files_path(filename="*")
+      root.nil? ? "config/#{filename}.yml" : File.join(root, "config/#{filename}.yml")
+    end
 
     def hash
       @hash ||= {}
